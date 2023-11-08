@@ -223,13 +223,9 @@ nav ul > li > a:hover {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    height: fit-content;
+    max-height: fit-content;
     padding: 2rem;
     gap: 3rem;
-}
-.container .portfolio > div:has(h2) {
-    margin-top: -6rem;
 }
 .portfolio ul {
     display: flex;
@@ -511,9 +507,6 @@ footer p {
     .portfolio {
         flex: none;
         min-height: fit-content;
-    }
-    .container .portfolio > div:has(h2) {
-        margin: 0;
     }
     .portfolio .projects {
         grid-template-columns: 1fr 1fr;
