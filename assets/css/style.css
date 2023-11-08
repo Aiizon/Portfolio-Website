@@ -228,6 +228,9 @@ nav ul > li > a:hover {
     padding: 2rem;
     gap: 3rem;
 }
+.container .portfolio > div:has(h2) {
+    margin-top: -6rem;
+}
 .portfolio ul {
     display: flex;
     flex-wrap: wrap;
@@ -505,12 +508,12 @@ footer p {
     .contact address > div:nth-child(2) {
         margin-right: 0;
     }
-    .container .portfolio > div:has(h2) {
-        margin-top: -6rem;
-    }
     .portfolio {
         flex: none;
         min-height: fit-content;
+    }
+    .container .portfolio > div:has(h2) {
+        margin: 0;
     }
     .portfolio .projects {
         grid-template-columns: 1fr 1fr;
@@ -625,10 +628,16 @@ footer p {
         bottom: 0.5rem;
         right: 0.5rem;
     }
+    .container .blog > div:has(h2) {
+        margin: 0;
+    }
     .blog .blog-container {
         flex-direction: column;
     }
     .blog .blog-container img {
         min-width: 100%
+    }
+    .container .contact > div:has(h2) {
+        margin: 0;
     }
 }
