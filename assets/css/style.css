@@ -229,6 +229,7 @@ nav ul > li > a:hover {
     max-height: fit-content;
     padding: 2rem;
     gap: 3rem;
+    min-height: 110vh;
 }
 .portfolio ul {
     display: flex;
@@ -348,16 +349,13 @@ nav ul > li > a:hover {
     cursor: pointer;
 }
 /*------------------------------------Contact---------------------------------------*/
-.container:has(.contact) {
-    min-height: 50vh;
-}
 .contact {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    height: 50vh;
+    min-height: 55vh;
     padding: 2rem;
     gap: 4rem;
 }
@@ -416,7 +414,7 @@ nav ul > li > a:hover {
     justify-content: space-evenly;
     gap: 5rem;
     margin: 0 auto;
-    padding: 2rem 0;
+    padding: 2rem;
 }
 .form-container {
     display: flex;
@@ -425,6 +423,7 @@ nav ul > li > a:hover {
     align-items: center;
     justify-content: space-evenly;
     gap: 1rem;
+    min-height: 50vh;
 }
 .form-container .gender {
     display: flex;
