@@ -1,3 +1,4 @@
 # My portfolio website
-This repo is private, so you're probably myself in the future wondering why I even wrote this in the first place.
-### Look behind you, I'm always watching.
+This repo contains my personnal portfolio website.
+It's all handmade so there probably are issues with it.
+If you find anything, feel free to get in touch !

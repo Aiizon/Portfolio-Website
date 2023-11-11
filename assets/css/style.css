@@ -40,6 +40,9 @@ h2 {
     max-height: fit-content;
 }
 .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 70vw;
     margin: 0 auto;
     min-height: fit-content;
@@ -71,10 +74,12 @@ h2 {
 }
 .up-button {
     position: fixed;
+    box-sizing: border-box;
     padding: 0.5rem;
     bottom: 1rem;
     right: 1rem;
     font-size: 1.5rem;
+    z-index: 10;
     background-color: var(--color-darkgrey);
     color: var(--color-white);
     border-radius: 50%;
@@ -108,7 +113,7 @@ strong {
     justify-content: center;
     max-width: fit-content;
     flex-grow: 1;
-    margin: 0 auto;
+    margin: -37.2vh auto 0 auto;
     padding: 0;
     height: 100vh;
 }
@@ -116,8 +121,8 @@ strong {
     flex-grow: 1;
 }
 /*------------------------------Desktop navigation----------------------------------*/
-.burger-menu-toggle {
-    display: none;
+.navbar {
+    opacity: 0;
 }
 .menu-desktop {
     display: flex;
@@ -188,7 +193,7 @@ nav ul > li > a:hover {
     height: 6rem;
     max-height: 100px;
     width: 6rem;
-    max-height: 100px;
+    max-width: 100px;
     border-radius: 5px;
 }
 .skills {
@@ -229,7 +234,6 @@ nav ul > li > a:hover {
     max-height: fit-content;
     padding: 2rem;
     gap: 3rem;
-    min-height: 110vh;
 }
 .portfolio ul {
     display: flex;
@@ -262,8 +266,10 @@ nav ul > li > a:hover {
     position: relative;
 }
 .portfolio .projects img {
+    position: relative;
     width: 100%;
     height: 100%;
+    z-index: 1;
     object-fit: cover;
     transition: transform 0.4s ease-in-out;   
     border: none;
@@ -437,7 +443,6 @@ nav ul > li > a:hover {
     flex-direction: row;
     min-width: fit-content;
     justify-content: space-between;
-    margin-left: -1.1rem;
 }
 .form-container .info div {
     margin: 1rem;
@@ -446,11 +451,10 @@ nav ul > li > a:hover {
     width: 100%;
     height: 50%;
     padding: 0.5rem 0 0.5rem 0.5rem;
-    background-color: rgb(200, 200, 200);
-    border-color: none;
+    background-color: rgb(210, 210, 210);
+    border: none;
     border-radius: 5px;
     transition: background-color 0.4s ease-in-out;
-    box-shadow: none;
 }
 .form-container div:has(textarea) {
     width: 80%;
@@ -528,17 +532,21 @@ footer p {
 }
 /*----------------------------------Responsive------------------------------------*/
 @media screen and (max-width: 1050px) {
-    .title h1 {
-        margin-top: -10%;
-    }
     .container { 
         width: 90%;
+    }
+    .title {
+        margin-top: 0;
+    }
+    nav {
+        height: fit-content;
     }
     .navigation-desktop {
         display: none;
     }
     .portfolio ul {
         gap: 1rem;
+        text-align: center;
     }
     .contact address > div:nth-child(2) {
         margin-right: 0;
@@ -550,9 +558,6 @@ footer p {
     .portfolio .projects {
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: 1fr;
-    }
-    .blog {
-        max-height: fit-content;
     }
     .blog > div:has(h2) {
         margin-top: 1rem;
@@ -568,6 +573,9 @@ footer p {
         gap: 2.5rem;
         padding: 0;
     }
+    .contact a {
+        font-size: 0.9rem;
+    }
     .form-container .info {
         margin: 0;
     }
@@ -577,91 +585,148 @@ footer p {
     .pre-footer > div {
         flex-wrap: wrap;
     }
-    .burger-menu-toggle {
-    display: block;
-    position: fixed;
-    top: 2.5rem;
-    left: 2.5rem;
-    z-index: 1;
-    -webkit-user-select: none;
-    user-select: none;
+    .navbar {
+        opacity: 1;
     }
-    .burger-menu-toggle a {
-    text-decoration: none;
-    color: var(--color-white);
-    
-    transition: color 0.4s ease;
+    .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        box-sizing: border-box;
+        z-index: 10;
+        left: 0;
+        height: 10rem;
+        width: 100vw;
     }
-    .burger-menu-toggle a:hover {
-    color: var(--color-primary);
+    .navbar .nav-container li {
+        list-style: none;
     }
-    .burger-menu-toggle input {
-    display: block;
-    width: 40px;
-    height: 32px;
-    position: absolute;
-    cursor: pointer;
-    opacity: 0;
-    z-index: 2;
+    .navbar .nav-container a {
+        text-decoration: none;
+        color: var(--color-white);
+        font-weight: 500;
+        font-size: 1.2rem;
+        transition: font-weight 0.4s color 0.4s ease-in-out;
     }
-    .burger-menu-toggle span {
-    display: block;
-    width: 2rem;
-    height: 0.2rem;
-    margin-bottom: 5px;
-    position: relative;
-    background: var(--color-primary);
-    border-radius: 3px;
-    z-index: 0;
-    transform-origin: 4px 0px;
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0), background 0.5s cubic-bezier(0.77,0.2,0.05,1.0), opacity 0.55s ease;
+    .navbar .nav-container a:hover {
+        color: var(--color-primary);
     }
-    .burger-menu-toggle span:first-child {
-    transform-origin: 0% 0%;
+    .nav-container .checkbox {
+        position: fixed;
+        display: block;
+        top: 53px;
+        left: 45px;
+        height: 40px;
+        width: 40px;
+        z-index: 3;
+        opacity: 0;
+        cursor: pointer;
     }
-    .burger-menu-toggle span:nth-last-child(2) {
-    transform-origin: 0% 100%;
+    .nav-container .hamburger-lines {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        left: 50px;
+        top: 60px;
+        height: 26px;
+        width: 32px;
+        z-index: 2;  
     }
-    .burger-menu-toggle input:checked ~ span {
-    opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
+    .nav-container .hamburger-lines .line {
+        display: block;
+        position: fixed;
+        height: 4px;
+        width: 33px;
+        margin: 0;
+        padding: 0;
+        border-radius: 5px;
+        background: var(--color-darkgrey);
     }
-    .burger-menu-toggle input:checked ~ span:nth-last-child(3) {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
+    .nav-container .hamburger-lines .line1 {
+        top: 60px;
+        transform-origin: 0% 0%;
+        transition: transform 0.4s ease-in-out;
     }
-    .burger-menu-toggle input:checked ~ span:nth-last-child(2) {
-    transform: rotate(-45deg) translate(0, -1px);
+    .nav-container .hamburger-lines .line2 {
+        top: 71px;
+        transition: transform 0.2s ease-in-out;
     }
-    .burger-menu-toggle input:checked ~ .menu {
-    transform: none;
-    transition: none;
+    .nav-container .hamburger-lines .line3 {
+        top: 82px;
+        transform-origin: 0% 100%;
+        transition: transform 0.4s ease-in-out;
     }
-    .burger-menu-toggle .menu {
-    position: fixed;
-    width: 8rem;
-    top: 4rem;
-    left: 0;
-    padding: 1.5rem;
-    background-color: rgba(0, 0, 0, 0.500);
-    border-radius: 5px;
-    list-style-type: none;
-    transform-origin: 0% 0%;
-    transform: translate(-100%, 0);
-    transition: transform 0.5s, cubic-bezier(0.77,0.2,0.05,1.0);
+    .navbar .menu-items {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        text-align: center;
+        position: fixed;
+        box-sizing: border-box;
+        padding: 2rem 1rem 0 1rem;
+        margin-top: 70vh;
+        height: 45vh;
+        width: 8rem;
+        z-index: 10;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.500);
+        transform: translateX(-100%);
+        transition: transform 0.5s ease-in-out;
     }
-    .burger-menu-toggle .menu li {
-    padding: 1rem 0;
-    font-size: 16px;
+    .logo img {
+        position: absolute;
+        box-sizing: border-box;
+        height: 4.5rem;
+        width: 4.5rem;
+        min-width: 40px;
+        max-width: 80px;
+        min-height: 40px;
+        max-height: 80px;
+        border-radius: 5px;
+        top: 10px;
+        right: 30px;
+    }
+    .navbar .menu-items li {
+        font-size: 1.5rem;
+        font-weight: 500;
+    }
+    .nav-container .checkbox:checked ~ .menu-items {
+        transform: translateX(0);
+    }
+    .nav-container .checkbox:checked ~ .hamburger-lines .line1 {
+        transform: rotate(45deg);
+    }
+    .nav-container .checkbox:checked ~ .hamburger-lines .line2 {
+        transform: scaleY(0);
+    }
+    .nav-container .checkbox:checked ~ .hamburger-lines .line3 {
+        transform: rotate(-45deg);
+    }
+    .nav-container .checkbox:checked ~ .logo{
+        display: none;
     }
 }
 @media screen and (max-width: 600px) {
+    .title h1 {
+        font-size: 2.5rem;
+    }
+    .biography:nth-child(2) {
+        width: 100%;
+    }
     .portfolio .projects {
         grid-template-columns: 1fr;
     }
     .up-button {
         bottom: 0.5rem;
         right: 0.5rem;
+    }
+    .blog {
+        max-height: 180vh;
+        height: fit-content;
+        padding-bottom: 2rem;
     }
     .container .blog > div:has(h2) {
         margin: 0;
