@@ -309,9 +309,6 @@ nav ul > li > a:hover {
     gap: 4rem;
     padding: -3rem 2rem 0 2rem;
 }
-.container .blog > div:has(h2) {
-    margin-top: -4rem;
-}
 .blog .blog-container {
     resize: none;
     display: flex;
@@ -598,6 +595,7 @@ footer p {
         left: 0;
         height: 10rem;
         width: 100vw;
+        gap: 1.2rem;
     }
     .navbar .nav-container li {
         list-style: none;
